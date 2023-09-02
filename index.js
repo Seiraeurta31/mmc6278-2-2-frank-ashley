@@ -1,6 +1,7 @@
 const { program } = require("commander");
 const fs = require("fs/promises");
 const chalk = require("chalk");
+const { read } = require("fs");
 const QUOTE_FILE = "quotes.txt";
 
 program
@@ -13,9 +14,20 @@ program
   .description("Retrieves a random quote")
   .action(async () => {
     console.log("getQuote triggered")
+    
+    fs.readFile(QUOTE_FILE, 'utf-8', function(err, readData){
+      if(err) throw err
+      var array = readData.toString().split("\n") // load data from file into an array
+      for(i in array){
+        console.log(array[i]) // to validate data read in file
+      }
+      
+    })
+    
     // TODO: Pull a random quote from the quotes.txt file
     // console log the quote and author
     // You may style the text with chalk as you wish
+    
   });
 
 program
@@ -35,3 +47,5 @@ program
   });
 
 program.parse();
+
+
