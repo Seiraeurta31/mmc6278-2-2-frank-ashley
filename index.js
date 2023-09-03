@@ -47,11 +47,10 @@ async function outputRandomQuote(){
     const readData = await fs.readFile(QUOTE_FILE, 'utf-8')
     var dataAarray = readData.split("\n") //store lines of text in array
     dataAarray = dataAarray.filter(line => line != "") //removes any potential blank lines from list
-    var randomQuoteLine = Math.floor(Math.random() * ((dataAarray.length -1)-0 +0)) //create random # within array length
-    var quoteArray = dataAarray[randomQuoteLine].split('|') //separate line into array per | separator
-    var quote = quoteArray[0]
-    var author = quoteArray[1]
-    console.log(quote)
+    const randomQuoteLine = Math.floor(Math.random() * ((dataAarray.length -1)-0 +0)) //create random # within array length
+    const quoteArray = dataAarray[randomQuoteLine].split('|') //separate line into array per | separator
+    const quote = quoteArray[0]
+    const author = quoteArray[1]
     console.log(chalk.bold('Quote: ') + chalk.italic('"' + quote + '"') + chalk.bold('\nAuthor: ') + chalk.italic(author))
   }
   catch{
@@ -65,7 +64,7 @@ async function addQuoteToFile(quote, author){
     if(!author){ //if author is not provided, set to Anonymous
       author = "Anonymous"
     }
-    var newQuote = (quote + "|" + author) //combine & format quote and author into new line format
+    const newQuote = (quote + "|" + author) //combine & format quote and author into new line format
     await fs.appendFile(QUOTE_FILE, newQuote + "\n")
     console.log(chalk.bold('Quote: ') + chalk.italic('"' + quote + '"') + chalk.bold('\nAuthor: ') + chalk.italic(author))
   }
