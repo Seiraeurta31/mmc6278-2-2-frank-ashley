@@ -47,7 +47,8 @@ async function outputRandomQuote(){
     const readData = await fs.readFile(QUOTE_FILE, 'utf-8')
     var dataAarray = readData.split("\n") //store lines of text in array
     dataAarray = dataAarray.filter(line => line != "") //removes any potential blank lines from list
-    const randomQuoteLine = Math.floor(Math.random() * ((dataAarray.length -1)-0 +0)) //create random # within array length
+    const randomQuoteLine = Math.floor(Math.random() * (dataAarray.length)) //create random # within array length
+    console.log(randomQuoteLine)
     const quoteArray = dataAarray[randomQuoteLine].split('|') //separate line into array per | separator
     const quote = quoteArray[0]
     const author = quoteArray[1]
